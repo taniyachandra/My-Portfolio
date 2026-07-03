@@ -193,6 +193,7 @@ h1{
   border:none;border-radius:100px;color:#fff;font-size:.9rem;font-weight:700;
   text-decoration:none;transition:all .3s;letter-spacing:.03em;
   box-shadow:0 4px 24px rgba(255,45,120,.4);position:relative;overflow:hidden;
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
 }
 .btnp::before{
   content:'';position:absolute;inset:0;
@@ -209,6 +210,7 @@ h1{
   border:1.5px solid rgba(255,255,255,.15);
   border-radius:100px;color:var(--text);font-size:.9rem;font-weight:600;
   text-decoration:none;transition:all .3s;
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
 }
 .btno:hover{
   border-color:var(--c);color:var(--c);
@@ -403,6 +405,13 @@ h1{
 .proj-fs{list-style:none;display:flex;flex-direction:column;gap:8px;}
 .proj-fs li{display:flex;align-items:flex-start;gap:10px;font-size:.87rem;color:var(--muted);line-height:1.65;}
 .proj-fs li::before{content:'▸';color:var(--r);flex-shrink:0;margin-top:3px;font-size:.72rem;}
+.proj-link{
+  display:inline-flex;align-items:center;gap:7px;margin-top:1.2rem;
+  color:var(--c);text-decoration:none;font-size:.85rem;font-weight:600;
+  border-bottom:1px solid rgba(0,212,255,.35);padding-bottom:2px;transition:all .3s;
+  position:relative;z-index:2;
+}
+.proj-link:hover{color:var(--r);border-color:var(--r);}
 
 /* ============================================================
    LEETCODE
@@ -511,38 +520,74 @@ h1{
 .lang-sub{font-size:.76rem;color:var(--muted);margin-top:4px;}
 
 /* ============================================================
-   CONTACT
+   CERTIFICATIONS
 ============================================================ */
-#contact-sec{padding:6rem 2rem;text-align:center;}
-.cc-grid{display:flex;flex-wrap:wrap;gap:1.4rem;justify-content:center;margin-top:3rem;}
-.cccard{
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.4rem;}
+.certcard{
   background:var(--glass);border:1px solid var(--border);
-  border-radius:22px;padding:2rem 2.3rem;
-  text-decoration:none;color:var(--text);
-  transition:all .35s;min-width:195px;
-  display:flex;flex-direction:column;align-items:center;gap:10px;
-  backdrop-filter:blur(12px);position:relative;overflow:hidden;
+  border-radius:22px;padding:1.9rem;
+  transition:all .35s;position:relative;overflow:hidden;backdrop-filter:blur(12px);
+  display:flex;gap:1.2rem;
 }
-.cccard::before{
-  content:'';position:absolute;inset:0;opacity:0;transition:opacity .35s;
+.certcard:nth-child(1){--cc:var(--g);}
+.certcard:nth-child(2){--cc:var(--p);}
+.certcard::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2.5px;
+  background:linear-gradient(90deg,transparent,var(--cc),transparent);
+  transform:scaleX(0);transform-origin:center;transition:transform .5s;
 }
-.cccard:nth-child(1)::before{background:linear-gradient(135deg,rgba(255,45,120,.1),rgba(185,79,255,.1));}
-.cccard:nth-child(2)::before{background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(79,138,255,.1));}
-.cccard:nth-child(3)::before{background:linear-gradient(135deg,rgba(15,245,160,.1),rgba(0,212,255,.1));}
-.cccard:nth-child(4)::before{background:linear-gradient(135deg,rgba(255,217,61,.1),rgba(255,107,43,.1));}
-.cccard:hover::before{opacity:1;}
-.cccard:nth-child(1):hover{border-color:var(--r);box-shadow:0 0 32px rgba(255,45,120,.2),0 20px 44px rgba(0,0,0,.3);}
-.cccard:nth-child(2):hover{border-color:var(--c);box-shadow:0 0 32px rgba(0,212,255,.2),0 20px 44px rgba(0,0,0,.3);}
-.cccard:nth-child(3):hover{border-color:var(--g);box-shadow:0 0 32px rgba(15,245,160,.2),0 20px 44px rgba(0,0,0,.3);}
-.cccard:nth-child(4):hover{border-color:var(--y);box-shadow:0 0 32px rgba(255,217,61,.2),0 20px 44px rgba(0,0,0,.3);}
-.cccard:hover{transform:translateY(-10px);}
-.cc-ico{font-size:2rem;}
-.cc-lbl{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;}
-.cccard:nth-child(1) .cc-val{color:var(--r);}
-.cccard:nth-child(2) .cc-val{color:var(--c);}
-.cccard:nth-child(3) .cc-val{color:var(--g);}
-.cccard:nth-child(4) .cc-val{color:var(--y);}
-.cc-val{font-size:.82rem;word-break:break-all;text-align:center;}
+.certcard:hover::after{transform:scaleX(1);}
+.certcard:hover{border-color:var(--cc);transform:translateY(-6px);box-shadow:0 20px 44px rgba(0,0,0,.4);}
+.cert-ico{
+  width:50px;height:50px;border-radius:14px;flex-shrink:0;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+}
+.cert-nm{font-family:'Syne',sans-serif;font-size:1.02rem;font-weight:700;margin-bottom:4px;color:var(--cc);}
+.cert-org{font-size:.78rem;color:var(--muted);margin-bottom:8px;font-weight:600;}
+.cert-ds{font-size:.83rem;color:var(--muted);line-height:1.6;}
+
+/* ============================================================
+   HIRE ME MODAL
+============================================================ */
+.hire-grid{display:flex;flex-direction:column;gap:.8rem;margin-top:1rem;}
+.hire-row{
+  display:flex;align-items:center;gap:14px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;padding:14px 18px;text-decoration:none;color:var(--text);
+  transition:all .3s;
+}
+.hire-row:hover{border-color:var(--c);background:rgba(0,212,255,.06);transform:translateX(6px);}
+.hire-ico{font-size:1.3rem;width:32px;text-align:center;}
+.hire-lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;}
+.hire-val{font-size:.9rem;font-weight:600;word-break:break-all;}
+
+/* ============================================================
+   CONTACT FORM
+============================================================ */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:3rem;text-align:left;}
+.cform{
+  background:var(--glass);border:1px solid var(--border);
+  border-radius:26px;padding:2.4rem;backdrop-filter:blur(12px);
+}
+.cform h3{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:1.6rem;}
+.frow{margin-bottom:1.2rem;}
+.frow label{display:block;font-size:.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px;font-weight:600;}
+.frow input,.frow textarea{
+  width:100%;padding:13px 16px;border-radius:14px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);
+  color:var(--text);font-family:'Outfit',sans-serif;font-size:.9rem;
+  transition:all .3s;resize:vertical;
+}
+.frow input:focus,.frow textarea:focus{outline:none;border-color:var(--c);box-shadow:0 0 0 3px rgba(0,212,255,.1);background:rgba(0,212,255,.03);}
+.frow textarea{min-height:110px;}
+.fsubmit{
+  width:100%;padding:14px;border:none;border-radius:100px;cursor:pointer;
+  background:linear-gradient(135deg,var(--r),var(--p));color:#fff;font-size:.92rem;font-weight:700;
+  transition:all .3s;letter-spacing:.03em;box-shadow:0 4px 24px rgba(255,45,120,.35);
+}
+.fsubmit:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(255,45,120,.55);}
+.fnote{font-size:.74rem;color:var(--muted);margin-top:.9rem;text-align:center;}
 
 /* ============================================================
    MODAL
@@ -613,7 +658,7 @@ footer{
    RESPONSIVE
 ============================================================ */
 @media(max-width:768px){
-  .about-grid,.lc-card{grid-template-columns:1fr;gap:2rem;}
+  .about-grid,.lc-card,.contact-wrap{grid-template-columns:1fr;gap:2rem;}
   nav{padding:.9rem 1.4rem;}
   .navlinks{gap:1.2rem;}
   .navlinks a{font-size:.72rem;}
@@ -649,6 +694,7 @@ footer{
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
     <li><a href="#contact-sec">Contact</a></li>
   </ul>
 </nav>
@@ -680,7 +726,8 @@ footer{
 
     <div class="ctas">
       <a href="#projects" class="btnp"><span>View My Work</span></a>
-      <a href="#contact-sec" class="btno">Get In Touch</a>
+      <a href="Taniya_Chandra_Resume.pdf" download class="btno">⬇ Download Resume</a>
+      <button class="btno" onclick="openModal('hireme')">🤝 Hire Me</button>
     </div>
   </div>
   <div class="scroll-ind"><span>Scroll</span><div class="scroll-line"></div></div>
@@ -698,7 +745,7 @@ footer{
     <div class="about-text rev">
       <p>I'm a <em>motivated B.Tech CSE (AI &amp; ML) student</em> at <em class="p">Tirthankar Mahaveer University, Moradabad</em>, driven by deep passion for technology and problem-solving.</p>
       <p>My programming journey began with <em class="c">Java</em>, where I've built a strong foundation in OOP, Multithreading, Collections, and Data Structures. I love tackling algorithmic challenges and building real-world applications.</p>
-      <p>I'm actively seeking an <em class="r">internship opportunity</em> to contribute meaningfully while growing my skills in software development and AI/ML.</p>
+      <p>I'm currently working as a <em class="r">Java Developer Intern at ByteNLearn</em>, developing Java programs and collaborating on real project tasks.</p>
       <div class="expand-hint" style="--gc:var(--p);margin-top:1rem;" onclick="openModal('about')">↗ Read more about me</div>
     </div>
     <div class="stat-grid">
@@ -730,26 +777,26 @@ footer{
     <div class="skcard rev d1" onclick="openModal('dsa')">
       <span class="sk-ico">🧠</span>
       <div class="sk-nm">Data Structures & Algorithms</div>
-      <div class="sk-ds">Solid DSA foundation with 60+ LeetCode problems solved consistently.</div>
-      <div class="sk-tags"><span class="sk-tag">Arrays</span><span class="sk-tag">Strings</span><span class="sk-tag">Sorting</span><span class="sk-tag">Searching</span></div>
+      <div class="sk-ds">Solid DSA foundation with 100+ LeetCode problems solved consistently.</div>
+      <div class="sk-tags"><span class="sk-tag">Arrays</span><span class="sk-tag">Strings</span><span class="sk-tag">Linked List</span><span class="sk-tag">OOP</span></div>
       <div class="bar-row"><div class="bar-head"><span>Proficiency</span><span>75%</span></div><div class="bar-track"><div class="bar-fill" data-w="75%"></div></div></div>
       <div class="expand-hint">↗ Click to expand</div>
     </div>
 
     <div class="skcard rev d2" onclick="openModal('web')">
       <span class="sk-ico">🌐</span>
-      <div class="sk-nm">Web Development</div>
-      <div class="sk-ds">Building responsive web interfaces with core web technologies.</div>
-      <div class="sk-tags"><span class="sk-tag">HTML5</span><span class="sk-tag">CSS3</span><span class="sk-tag">JavaScript</span></div>
+      <div class="sk-nm">Frontend & Backend</div>
+      <div class="sk-ds">Building responsive web interfaces and server-side logic across the stack.</div>
+      <div class="sk-tags"><span class="sk-tag">HTML5</span><span class="sk-tag">CSS3</span><span class="sk-tag">JavaScript</span><span class="sk-tag">Python</span></div>
       <div class="bar-row"><div class="bar-head"><span>Proficiency</span><span>65%</span></div><div class="bar-track"><div class="bar-fill" data-w="65%"></div></div></div>
       <div class="expand-hint">↗ Click to expand</div>
     </div>
 
     <div class="skcard rev d3" onclick="openModal('tools')">
       <span class="sk-ico">🛠️</span>
-      <div class="sk-nm">Tools & Platforms</div>
-      <div class="sk-ds">Comfortable with professional dev environments and version control.</div>
-      <div class="sk-tags"><span class="sk-tag">Git</span><span class="sk-tag">IntelliJ IDEA</span><span class="sk-tag">VS Code</span><span class="sk-tag">LeetCode</span></div>
+      <div class="sk-nm">Tools, Frameworks & Database</div>
+      <div class="sk-ds">Comfortable with professional dev environments, basic frameworks, and databases.</div>
+      <div class="sk-tags"><span class="sk-tag">Git</span><span class="sk-tag">GitHub</span><span class="sk-tag">Node.js</span><span class="sk-tag">Express.js</span><span class="sk-tag">MySQL</span></div>
       <div class="bar-row"><div class="bar-head"><span>Proficiency</span><span>70%</span></div><div class="bar-track"><div class="bar-fill" data-w="70%"></div></div></div>
       <div class="expand-hint">↗ Click to expand</div>
     </div>
@@ -773,19 +820,19 @@ footer{
   <div class="stitle rev" style="background:linear-gradient(90deg,var(--c),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">What I've Built</div>
   <p class="ssub rev">Click a project to see full details.</p>
 
-  <div class="projcard rev" onclick="openModal('taskmanager')">
+  <div class="projcard rev">
     <div class="proj-top2">
-      <div class="proj-ico">📋</div>
-      <span class="proj-badge">Java</span>
+      <div class="proj-ico">🧳</div>
+      <span class="proj-badge">React · TypeScript · AI</span>
     </div>
-    <div class="proj-nm">Student Task Manager</div>
-    <div class="proj-ds">A robust console-based task management application built for students using Core Java, demonstrating mastery of Object-Oriented Programming principles with clean, production-quality architecture.</div>
+    <div class="proj-nm" onclick="openModal('triplanner')" style="cursor:pointer;">AI Trip Planner</div>
+    <div class="proj-ds" onclick="openModal('triplanner')" style="cursor:pointer;">A smart travel planning web application that helps users create personalized trip itineraries using AI. Users enter destination, budget, duration, and preferences — the app generates a detailed travel plan with places to visit, accommodation suggestions, and daily schedules.</div>
     <ul class="proj-fs">
-      <li>Built with Core Java using full OOP — inheritance, encapsulation, polymorphism.</li>
-      <li>Complete CRUD: add, view, update, delete tasks with priority management.</li>
-      <li>Robust exception handling for crash-resistant behavior.</li>
+      <li>Integrated AI for uninterrupted assistance and a built-in chat mode for query resolution.</li>
+      <li>Built with React.js, TypeScript, Node.js, Google Gemini API, OpenAI API, and Convex Database.</li>
+      <li>Personalized itineraries based on real-time user preferences and constraints.</li>
     </ul>
-    <div class="expand-hint" style="--gc:var(--c);margin-top:1rem;">↗ Click to see full project details</div>
+    <a href="https://github.com/taniyachandra/AI-Trip-Planner" target="_blank" class="proj-link">🐙 View on GitHub →</a>
   </div>
 </section>
 
@@ -806,20 +853,48 @@ footer{
         <div class="expand-hint" style="--gc:var(--y);margin-top:.5rem;">↗ Click to read more</div>
       </div>
     </div>
-    <div class="achitem rev d1" onclick="openModal('selflearn')">
-      <div class="achdot">☕</div>
+    <div class="achitem rev d1" onclick="openModal('codingcontest')">
+      <div class="achdot">💻</div>
       <div class="achbody">
-        <h3>Advanced Java Self-Learning</h3>
-        <p>Actively building Java expertise through self-directed learning covering OOP, multithreading, and DSA.</p>
+        <h3>Technical Coding Contest — TMU</h3>
+        <p>Participated in the Technical Coding Contest organised by Teerthanker Mahaveer University, sharpening rapid prototyping skills.</p>
         <div class="expand-hint" style="--gc:var(--g);margin-top:.5rem;">↗ Click to read more</div>
       </div>
     </div>
     <div class="achitem rev d2" onclick="openModal('leetachieve')">
-      <div class="achdot">💻</div>
+      <div class="achdot">🧩</div>
       <div class="achbody">
-        <h3>60+ LeetCode Problems Solved</h3>
-        <p>Consistent practice on LeetCode focusing on Arrays and Strings, building speed and algorithmic thinking.</p>
+        <h3>100+ LeetCode Problems Solved</h3>
+        <p>Consistent practice on LeetCode in Java, covering arrays, strings, and linked lists — with a focus on optimising time and space complexity.</p>
         <div class="expand-hint" style="--gc:var(--c);margin-top:.5rem;">↗ Click to read more</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ======== CERTIFICATIONS ======== -->
+<section class="sec" id="certifications">
+  <div class="slbl" style="color:var(--g)">Certifications</div>
+  <div class="stitle rev" style="background:linear-gradient(90deg,var(--g),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Verified Learning</div>
+  <p class="ssub rev">Certifications that back up my skills.</p>
+
+  <div class="cert-grid">
+    <div class="certcard rev">
+      <div class="cert-ico">☕</div>
+      <div>
+        <div class="cert-nm">Java Training Certificate</div>
+        <div class="cert-org">IIT Bombay — Spoken Tutorial</div>
+        <div class="cert-ds">Successfully completed Java Programming Training. Learned Core Java concepts including OOPs, Classes, Objects, Arrays, and Exception Handling.</div>
+      </div>
+    </div>
+    <div class="certcard rev d1">
+      <div class="cert-ico">🛡️</div>
+      <div>
+        <div class="cert-nm">AI and Cybersecurity Awareness</div>
+        <div class="cert-org">TCS iON</div>
+        <div class="cert-ds">Gained foundational knowledge of Artificial Intelligence and Cybersecurity concepts, cyber threats, online safety, data privacy, and responsible use of AI.</div>
       </div>
     </div>
   </div>
@@ -856,11 +931,61 @@ footer{
     <div class="slbl rev" style="color:var(--m);justify-content:center;">Contact</div>
     <div class="stitle rev" style="text-align:center;background:linear-gradient(90deg,var(--r),var(--m),var(--p));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Let's Connect</div>
     <p class="ssub rev" style="text-align:center;">Open to internships, collaborations &amp; new opportunities.</p>
-  </div>
-  <div class="cc-grid">
-    <a href="mailto:taniyachandra910@gmail.com" class="cccard rev"><div class="cc-ico">✉️</div><div class="cc-lbl">Email</div><div class="cc-val">taniyachandra910@gmail.com</div></a>
-    <a href="https://linkedin.com/in/taniya-chandra-8021b4371" target="_blank" class="cccard rev d1"><div class="cc-ico">💼</div><div class="cc-lbl">LinkedIn</div><div class="cc-val">taniya-chandra-8021b4371</div></a>
-    <a href="https://github.com/taniyachandra" target="_blank" class="cccard rev d2"><div class="cc-ico">🐙</div><div class="cc-lbl">GitHub</div><div class="cc-val">github.com/taniyachandra</div></a>
+
+    <div class="contact-wrap">
+      <!-- Quick contact cards -->
+      <div class="cform rev">
+        <h3>Reach Me Directly</h3>
+        <div class="hire-grid">
+          <a href="mailto:taniyachandra910@gmail.com" class="hire-row">
+            <span class="hire-ico">✉️</span>
+            <div><div class="hire-lbl">Email</div><div class="hire-val">taniyachandra910@gmail.com</div></div>
+          </a>
+          <a href="https://linkedin.com/in/taniya-chandra-8021b4371" target="_blank" class="hire-row">
+            <span class="hire-ico">💼</span>
+            <div><div class="hire-lbl">LinkedIn</div><div class="hire-val">taniya-chandra-8021b4371</div></div>
+          </a>
+          <a href="https://github.com/taniyachandra" target="_blank" class="hire-row">
+            <span class="hire-ico">🐙</span>
+            <div><div class="hire-lbl">GitHub</div><div class="hire-val">github.com/taniyachandra</div></div>
+          </a>
+          <div class="hire-row" style="cursor:default;">
+            <span class="hire-ico">📍</span>
+            <div><div class="hire-lbl">Location</div><div class="hire-val">Moradabad, Uttar Pradesh, India</div></div>
+          </div>
+          <div class="hire-row" style="cursor:default;">
+            <span class="hire-ico">📞</span>
+            <div><div class="hire-lbl">Phone</div><div class="hire-val">+91-9528877160</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Message form -->
+      <form class="cform rev d1" action="https://formsubmit.co/taniyachandra910@gmail.com" method="POST">
+        <h3>Send a Message</h3>
+        <input type="hidden" name="_subject" value="New message from Portfolio!">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <div class="frow">
+          <label for="fname">Your Name</label>
+          <input type="text" id="fname" name="name" placeholder="e.g. Riya Sharma" required>
+        </div>
+        <div class="frow">
+          <label for="femail">Your Email</label>
+          <input type="email" id="femail" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="frow">
+          <label for="fsubject">Subject</label>
+          <input type="text" id="fsubject" name="subject" placeholder="e.g. Internship Opportunity" required>
+        </div>
+        <div class="frow">
+          <label for="fmessage">Message</label>
+          <textarea id="fmessage" name="message" placeholder="Write your message here..." required></textarea>
+        </div>
+        <button type="submit" class="fsubmit">Send Message ✉️</button>
+        <p class="fnote">Message goes directly to Taniya's inbox via FormSubmit.</p>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -883,13 +1008,6 @@ const ro=new IntersectionObserver(entries=>{
   });
 },{threshold:.1});
 revs.forEach(r=>ro.observe(r));
-
-/* === COUNT UP === */
-function countUp(el,end,dur){
-  let s=0,step=end/(dur/16);
-  const t=setInterval(()=>{s+=step;if(s>=end){el.textContent=end+'+';clearInterval(t);}else el.textContent=Math.floor(s)+'+';},16);
-}
-let lcDone=false;
 
 /* === PHOTO === */
 document.getElementById('phbtn').onclick=()=>document.getElementById('fi').click();
@@ -917,17 +1035,18 @@ window.addEventListener('scroll',()=>{
 
 /* === MODAL DATA === */
 const MD={
-  about:{tag:'About Me',tc:'rgba(185,79,255,.15)',tt:'#c084fc',title:'About Taniya Chandra',html:`<p>I'm a <strong style="color:#f5f5ff">motivated B.Tech CSE (AI & ML) student</strong> at Tirthankar Mahaveer University, Moradabad, with a deep passion for technology, algorithmic thinking, and building impactful software.</p><h4>My Programming Journey</h4><p>My journey started with Java — a language that taught me discipline, structure, and the beauty of OOP. I've mastered advanced concepts like multithreading, exception handling, and the Collections framework by building real applications.</p><h4>What Drives Me</h4><p>I'm fascinated by Artificial Intelligence and Machine Learning. My B.Tech specialization gives me a strong academic foundation, while self-directed learning keeps me growing every day beyond the syllabus.</p><h4>Career Goal</h4><p>I'm seeking an internship where I can apply my Java and DSA skills in a real-world environment, contribute to meaningful projects, and grow alongside experienced professionals.</p>`},
-  stats:{tag:'My Numbers',tc:'rgba(255,45,120,.12)',tt:'#ff6eb4',title:'My Journey in Numbers',html:`<ul><li><strong style="color:#f5f5ff">60+ LeetCode Problems</strong> — solved with focus on Arrays and Strings, building speed and pattern recognition.</li><li><strong style="color:#f5f5ff">Java Expert</strong> — primary language with advanced OOP, multithreading, and collections mastery.</li><li><strong style="color:#f5f5ff">AI & ML Specialization</strong> — dedicated focus on the most impactful domain of modern computing.</li><li><strong style="color:#f5f5ff">2028 Graduation</strong> — 3+ years of exciting learning and growth ahead.</li></ul>`},
-  java:{tag:'Java',tc:'rgba(255,107,43,.12)',tt:'#ff9a62',title:'Java (Advanced)',html:`<p>Java is my primary language and the foundation of my technical expertise. I've mastered advanced concepts used in production environments.</p><h4>Core Competencies</h4><ul><li><strong style="color:#f5f5ff">OOP Principles</strong> — inheritance, encapsulation, polymorphism, abstraction with real-world application.</li><li><strong style="color:#f5f5ff">Multithreading</strong> — concurrent programs using Thread class, Runnable, and synchronization.</li><li><strong style="color:#f5f5ff">Exception Handling</strong> — crash-resistant apps with try-catch hierarchies and custom exceptions.</li><li><strong style="color:#f5f5ff">Collections Framework</strong> — ArrayList, HashMap, LinkedList, TreeMap, Set for efficient data management.</li></ul><h4>Tools</h4><div class="mchips"><span class="mchip">IntelliJ IDEA</span><span class="mchip">VS Code</span><span class="mchip">JDK 17+</span><span class="mchip">Maven</span></div>`},
-  dsa:{tag:'DSA',tc:'rgba(185,79,255,.15)',tt:'#c084fc',title:'Data Structures & Algorithms',html:`<p>DSA is the backbone of efficient software. My consistent LeetCode practice has built strong problem-solving instincts.</p><h4>Topics Covered</h4><ul><li><strong style="color:#f5f5ff">Arrays</strong> — two pointers, sliding window, prefix sums, in-place modifications.</li><li><strong style="color:#f5f5ff">Strings</strong> — pattern matching, manipulation, palindrome, character frequency analysis.</li><li><strong style="color:#f5f5ff">Sorting</strong> — Bubble, Selection, Insertion, Merge Sort with complexity analysis.</li><li><strong style="color:#f5f5ff">Searching</strong> — Binary Search and its variations.</li></ul><p>🏅 60+ problems solved &nbsp;|&nbsp; Easy to Medium &nbsp;|&nbsp; Goal: 200+ by end of 2025</p>`},
-  web:{tag:'Web Dev',tc:'rgba(0,212,255,.1)',tt:'#00d4ff',title:'Web Development',html:`<p>I have foundational knowledge in web technologies and am actively expanding my skills to build modern, responsive interfaces.</p><h4>Current Skills</h4><ul><li><strong style="color:#f5f5ff">HTML5</strong> — semantic markup, accessibility, structured content layout.</li><li><strong style="color:#f5f5ff">CSS3</strong> — flexbox, grid, animations, responsive design.</li><li><strong style="color:#f5f5ff">JavaScript</strong> — DOM manipulation, event handling, basic interactivity.</li></ul><h4>Learning Next</h4><p>React.js for frontend and Spring Boot for backend — building towards full-stack Java development.</p>`},
-  tools:{tag:'Tools',tc:'rgba(15,245,160,.1)',tt:'#0ff5a0',title:'Tools & Platforms',html:`<p>Comfortable with professional development environments used in the industry.</p><h4>Dev Tools</h4><ul><li><strong style="color:#f5f5ff">IntelliJ IDEA</strong> — primary Java IDE with smart code completion and debugging.</li><li><strong style="color:#f5f5ff">VS Code</strong> — lightweight editor for web development.</li><li><strong style="color:#f5f5ff">Git</strong> — version control basics: init, commit, push, pull, branching.</li><li><strong style="color:#f5f5ff">LeetCode</strong> — daily practice for competitive programming.</li></ul>`},
-  ai:{tag:'AI & ML',tc:'rgba(255,45,120,.12)',tt:'#ff6eb4',title:'Artificial Intelligence & Machine Learning',html:`<p>AI and ML are my primary domain of interest and the reason I chose CSE (AI & ML) specialization.</p><h4>Academic Coursework</h4><ul><li><strong style="color:#f5f5ff">Artificial Intelligence</strong> — search algorithms, knowledge representation, intelligent agents.</li><li><strong style="color:#f5f5ff">Machine Learning</strong> — supervised/unsupervised learning, basic model building.</li></ul><h4>Learning Goals</h4><ul><li>Master Python for ML — NumPy, Pandas, Scikit-learn</li><li>Build real ML projects — classification, regression, clustering</li><li>Explore Deep Learning with TensorFlow/PyTorch</li><li>AI-driven Java application development</li></ul>`},
-  taskmanager:{tag:'Java Project',tc:'rgba(255,107,43,.12)',tt:'#ffaa70',title:'Student Task Manager',html:`<p>A fully functional console-based task management application built for students using Core Java.</p><h4>What It Does</h4><ul><li>Add, view, update, and delete tasks — complete CRUD functionality.</li><li>Priority management — High, Medium, Low priority assignment.</li><li>Persistent task tracking with clean console UI within session.</li><li>Robust exception handling — no crashes even with invalid inputs.</li></ul><h4>Technical Implementation</h4><ul><li><strong style="color:#f5f5ff">Inheritance</strong> — base Task class with specialized subclasses.</li><li><strong style="color:#f5f5ff">Encapsulation</strong> — all data fields private, accessed via getters/setters.</li><li><strong style="color:#f5f5ff">Polymorphism</strong> — overridden methods for different task behaviors.</li><li><strong style="color:#f5f5ff">Collections</strong> — ArrayList for dynamic task storage.</li></ul><div class="mchips"><span class="mchip">Java</span><span class="mchip">OOP</span><span class="mchip">Collections</span><span class="mchip">Exception Handling</span><span class="mchip">IntelliJ IDEA</span></div>`},
+  hireme:{tag:'Hire Me',tc:'rgba(0,212,255,.12)',tt:'#00d4ff',title:"Let's Work Together",html:`<p>I'm actively seeking internship and entry-level opportunities in software development. Here's how you can reach me:</p><div class="hire-grid"><a href="mailto:taniyachandra910@gmail.com" class="hire-row"><span class="hire-ico">✉️</span><div><div class="hire-lbl">Email</div><div class="hire-val">taniyachandra910@gmail.com</div></div></a><a href="https://linkedin.com/in/taniya-chandra-8021b4371" target="_blank" class="hire-row"><span class="hire-ico">💼</span><div><div class="hire-lbl">LinkedIn</div><div class="hire-val">taniya-chandra-8021b4371</div></div></a><a href="https://github.com/taniyachandra" target="_blank" class="hire-row"><span class="hire-ico">🐙</span><div><div class="hire-lbl">GitHub</div><div class="hire-val">github.com/taniyachandra</div></div></a><div class="hire-row" style="cursor:default;"><span class="hire-ico">📍</span><div><div class="hire-lbl">Location</div><div class="hire-val">Moradabad, Uttar Pradesh, India</div></div></div><div class="hire-row" style="cursor:default;"><span class="hire-ico">📞</span><div><div class="hire-lbl">Phone</div><div class="hire-val">+91-9528877160</div></div></div></div>`},
+  about:{tag:'About Me',tc:'rgba(185,79,255,.15)',tt:'#c084fc',title:'About Taniya Chandra',html:`<p>I'm a <strong style="color:#f5f5ff">motivated B.Tech CSE (AI & ML) student</strong> at Tirthankar Mahaveer University, Moradabad, with a deep passion for technology, algorithmic thinking, and building impactful software.</p><h4>My Programming Journey</h4><p>My journey started with Java — a language that taught me discipline, structure, and the beauty of OOP. I've mastered advanced concepts like multithreading, exception handling, and the Collections framework by building real applications.</p><h4>What Drives Me</h4><p>I'm fascinated by Artificial Intelligence and Machine Learning. My B.Tech specialization gives me a strong academic foundation, while my internship experience and self-directed learning keep me growing every day beyond the syllabus.</p><h4>Career Goal</h4><p>I'm seeking software development opportunities where I can apply my Java and DSA skills in a real-world environment, contribute to meaningful projects, and grow alongside experienced professionals.</p>`},
+  stats:{tag:'My Numbers',tc:'rgba(255,45,120,.12)',tt:'#ff6eb4',title:'My Journey in Numbers',html:`<ul><li><strong style="color:#f5f5ff">100+ LeetCode Problems</strong> — solved in Java, covering arrays, strings, and linked lists.</li><li><strong style="color:#f5f5ff">Java Expert</strong> — primary language with advanced OOP, multithreading, and collections mastery.</li><li><strong style="color:#f5f5ff">AI & ML Specialization</strong> — dedicated focus on the most impactful domain of modern computing.</li><li><strong style="color:#f5f5ff">2028 Graduation</strong> — currently interning as a Java Developer at ByteNLearn.</li></ul>`},
+  java:{tag:'Java',tc:'rgba(255,107,43,.12)',tt:'#ff9a62',title:'Java (Advanced)',html:`<p>Java is my primary language and the foundation of my technical expertise. I've mastered advanced concepts used in production environments.</p><h4>Core Competencies</h4><ul><li><strong style="color:#f5f5ff">OOP Principles</strong> — inheritance, encapsulation, polymorphism, abstraction with real-world application.</li><li><strong style="color:#f5f5ff">Multithreading</strong> — concurrent programs using Thread class, Runnable, and synchronization.</li><li><strong style="color:#f5f5ff">Exception Handling</strong> — crash-resistant apps with try-catch hierarchies and custom exceptions.</li><li><strong style="color:#f5f5ff">Collections Framework</strong> — ArrayList, HashMap, LinkedList, TreeMap, Set for efficient data management.</li></ul><h4>Tools</h4><div class="mchips"><span class="mchip">IntelliJ IDEA</span><span class="mchip">VS Code</span><span class="mchip">JDK 17+</span><span class="mchip">Git</span></div>`},
+  dsa:{tag:'DSA',tc:'rgba(185,79,255,.15)',tt:'#c084fc',title:'Data Structures & Algorithms',html:`<p>DSA is the backbone of efficient software. My consistent LeetCode practice has built strong problem-solving instincts.</p><h4>Topics Covered</h4><ul><li><strong style="color:#f5f5ff">Arrays</strong> — two pointers, sliding window, prefix sums, in-place modifications.</li><li><strong style="color:#f5f5ff">Strings</strong> — pattern matching, manipulation, palindrome, character frequency analysis.</li><li><strong style="color:#f5f5ff">Linked Lists</strong> — traversal, reversal, cycle detection.</li><li><strong style="color:#f5f5ff">OOP-based problem design</strong> — applying core concepts to structure solutions.</li></ul><p>🏅 100+ problems solved &nbsp;|&nbsp; Focused on optimising time & space complexity</p>`},
+  web:{tag:'Web Dev',tc:'rgba(0,212,255,.1)',tt:'#00d4ff',title:'Frontend & Backend',html:`<p>I have hands-on knowledge across both frontend and backend web technologies.</p><h4>Frontend</h4><ul><li><strong style="color:#f5f5ff">HTML5</strong> — semantic markup, accessibility, structured content layout.</li><li><strong style="color:#f5f5ff">CSS3</strong> — flexbox, grid, animations, responsive design.</li><li><strong style="color:#f5f5ff">JavaScript</strong> — DOM manipulation, event handling, interactivity.</li></ul><h4>Backend</h4><ul><li><strong style="color:#f5f5ff">Java</strong> — server-side logic and application development.</li><li><strong style="color:#f5f5ff">Python</strong> — scripting and problem solving.</li><li><strong style="color:#f5f5ff">Node.js & Express.js (Basic)</strong> — building simple APIs and backend services.</li></ul>`},
+  tools:{tag:'Tools',tc:'rgba(15,245,160,.1)',tt:'#0ff5a0',title:'Tools, Frameworks & Database',html:`<p>Comfortable with professional development environments and basic frameworks used in the industry.</p><h4>Dev Tools</h4><ul><li><strong style="color:#f5f5ff">IntelliJ IDEA</strong> — primary Java IDE with smart code completion and debugging.</li><li><strong style="color:#f5f5ff">VS Code</strong> — lightweight editor for web development.</li><li><strong style="color:#f5f5ff">Git & GitHub</strong> — version control: init, commit, push, pull, branching.</li></ul><h4>Frameworks & Database</h4><ul><li><strong style="color:#f5f5ff">Node.js / Express.js (Basic)</strong> — backend fundamentals.</li><li><strong style="color:#f5f5ff">MySQL</strong> — relational database design and queries.</li></ul>`},
+  ai:{tag:'AI & ML',tc:'rgba(255,45,120,.12)',tt:'#ff6eb4',title:'Artificial Intelligence & Machine Learning',html:`<p>AI and ML are my primary domain of interest and the reason I chose CSE (AI & ML) specialization.</p><h4>Academic Coursework</h4><ul><li><strong style="color:#f5f5ff">Artificial Intelligence</strong> — search algorithms, knowledge representation, intelligent agents.</li><li><strong style="color:#f5f5ff">Machine Learning</strong> — supervised/unsupervised learning, basic model building.</li></ul><h4>Applied Experience</h4><ul><li>Integrated Google Gemini API & OpenAI API in the AI Trip Planner project.</li><li>Built a chat-mode assistant for real-time query resolution.</li><li>Completed AI and Cybersecurity Awareness training with TCS iON.</li></ul>`},
+  triplanner:{tag:'Featured Project',tc:'rgba(0,212,255,.12)',tt:'#00d4ff',title:'AI Trip Planner',html:`<p>AI Trip Planner is a smart travel planning web application that helps users create personalized trip itineraries using AI.</p><h4>What It Does</h4><ul><li>Users enter destination, budget, travel duration, and preferences.</li><li>Generates a detailed travel plan — places to visit, accommodation suggestions, and daily schedules.</li><li>Integrated AI for uninterrupted assistance throughout the planning flow.</li><li>Built-in chat mode for resolving user queries in real time.</li></ul><h4>Tech Stack</h4><div class="mchips"><span class="mchip">React.js</span><span class="mchip">TypeScript</span><span class="mchip">Node.js</span><span class="mchip">Google Gemini API</span><span class="mchip">OpenAI API</span><span class="mchip">Convex Database</span></div><p style="margin-top:1rem;">👉 <a href="https://github.com/taniyachandra/AI-Trip-Planner" target="_blank" style="color:#00d4ff">github.com/taniyachandra/AI-Trip-Planner</a></p>`},
   hackathon:{tag:'Achievement',tc:'rgba(255,217,61,.1)',tt:'#ffd93d',title:'Hackathon — Ram Lal Anand College',html:`<p>Participated in a competitive hackathon organized by Ram Lal Anand College — an intense experience that pushed my limits.</p><h4>What I Learned</h4><ul><li><strong style="color:#f5f5ff">Collaborative Problem-Solving</strong> — working in a team with a shared codebase.</li><li><strong style="color:#f5f5ff">Rapid Prototyping</strong> — building functional solutions quickly under time pressure.</li><li><strong style="color:#f5f5ff">Adaptability</strong> — pivoting when initial approaches didn't work.</li><li><strong style="color:#f5f5ff">Presentation Skills</strong> — communicating technical ideas clearly to judges.</li></ul>`},
-  selflearn:{tag:'Self Learning',tc:'rgba(15,245,160,.1)',tt:'#0ff5a0',title:'Advanced Java Self-Learning',html:`<p>Beyond the university curriculum, I've committed to structured self-directed learning to master advanced Java concepts.</p><h4>Topics Mastered</h4><ul><li><strong style="color:#f5f5ff">Advanced OOP</strong> — design patterns, SOLID principles, abstract classes vs interfaces.</li><li><strong style="color:#f5f5ff">Multithreading</strong> — Thread lifecycle, synchronization, race conditions, deadlock prevention.</li><li><strong style="color:#f5f5ff">Collections Deep Dive</strong> — HashMap internals, ArrayList vs LinkedList performance.</li><li><strong style="color:#f5f5ff">DSA in Java</strong> — implementing data structures from scratch.</li></ul>`},
-  leetachieve:{tag:'LeetCode',tc:'rgba(0,212,255,.1)',tt:'#00d4ff',title:'60+ LeetCode Problems Solved',html:`<p>Consistent competitive programming practice has been a core part of my development as a programmer.</p><h4>Problem Focus Areas</h4><ul><li><strong style="color:#f5f5ff">Arrays</strong> — two-pointer and sliding window mastery.</li><li><strong style="color:#f5f5ff">Strings</strong> — character manipulation, palindrome, anagram checking.</li><li><strong style="color:#f5f5ff">Sorting &amp; Searching</strong> — binary search variations, sort algorithms.</li></ul><h4>My Practice Philosophy</h4><p>I focus on understanding patterns, not memorizing. I revisit problems after 3 days for retention. Goal: 200+ problems by end of 2025.</p><p style="margin-top:.8rem;">👉 <a href="https://leetcode.com/taniya_chandra" target="_blank" style="color:#00d4ff">leetcode.com/taniya_chandra</a></p>`},
+  codingcontest:{tag:'Achievement',tc:'rgba(15,245,160,.1)',tt:'#0ff5a0',title:'Technical Coding Contest — TMU',html:`<p>Participated in the Technical Coding Contest organised by Teerthanker Mahaveer University.</p><h4>What I Gained</h4><ul><li><strong style="color:#f5f5ff">Rapid Prototyping</strong> — solving problems quickly under strict time constraints.</li><li><strong style="color:#f5f5ff">Collaborative Problem-Solving</strong> — working alongside peers on coding challenges.</li><li><strong style="color:#f5f5ff">Competitive Mindset</strong> — building confidence for future coding contests and interviews.</li></ul>`},
+  leetachieve:{tag:'LeetCode',tc:'rgba(0,212,255,.1)',tt:'#00d4ff',title:'100+ LeetCode Problems Solved',html:`<p>Consistent competitive programming practice has been a core part of my development as a programmer.</p><h4>Problem Focus Areas</h4><ul><li><strong style="color:#f5f5ff">Arrays</strong> — two-pointer and sliding window mastery.</li><li><strong style="color:#f5f5ff">Strings</strong> — character manipulation, palindrome, anagram checking.</li><li><strong style="color:#f5f5ff">Linked Lists</strong> — traversal, reversal, and cycle-related problems.</li></ul><h4>My Practice Philosophy</h4><p>I focus on optimising time and space complexity in every solution, understanding patterns rather than memorizing them.</p>`},
   course_dsa:{tag:'Course',tc:'rgba(185,79,255,.12)',tt:'#c084fc',title:'Data Structures & Algorithms',html:`<p>Core academic subject covering fundamental data structures and algorithms. Topics: arrays, linked lists, stacks, queues, trees, graphs, sorting, searching — with time and space complexity analysis.</p>`},
   course_oop:{tag:'Course',tc:'rgba(255,107,43,.12)',tt:'#ff9a62',title:'Object-Oriented Programming',html:`<p>In-depth study of OOP principles: classes, objects, inheritance, encapsulation, polymorphism, abstraction. Practical implementation in Java with real-world case studies and design pattern exposure.</p>`},
   course_web:{tag:'Course',tc:'rgba(0,212,255,.1)',tt:'#00d4ff',title:'Web Technologies',html:`<p>Comprehensive coverage of web development: HTML5, CSS3, JavaScript, HTTP protocol, client-server architecture, basic web applications, responsive design, and web standards.</p>`},
